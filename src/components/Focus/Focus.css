@@ -1,0 +1,873 @@
+.timer-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  background: #334155;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+}
+
+.today-summary {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+  padding: 0 1rem;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: rgba(78, 205, 196, 0.1);
+  border: 2px solid rgba(78, 205, 196, 0.3);
+  border-radius: 12px;
+  flex: 1;
+  max-width: 250px;
+  transition: all 0.3s;
+}
+
+.summary-item:hover {
+  background: rgba(78, 205, 196, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.2);
+}
+
+.summary-item svg {
+  color: #4ecdc4;
+  flex-shrink: 0;
+}
+
+.summary-item > div {
+  text-align: left;
+  flex: 1;
+}
+
+.summary-label {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3b82f6;
+  line-height: 1;
+}
+
+
+.focus-layout {
+  display: grid;
+  grid-template-columns: 600px 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.timer-modes {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.mode-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  background: #475569;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.mode-btn:hover {
+  background: #64748b;
+}
+
+.mode-btn.active {
+  border-color: #3b82f6;
+  background: #3b82f6;
+  color: white;
+}
+
+.timer-display {
+  margin: 3rem 0;
+}
+
+.time {
+  font-size: 6rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 1rem;
+}
+
+.sessions-count {
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  background: #475569;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  transition: all 0.3s;
+  color: white;
+}
+
+.control-btn:hover {
+  background: #64748b;
+}
+
+.control-btn.primary {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.control-btn.primary:hover {
+  background: #2563eb;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.settings-panel {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input[type='number'] {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.form-group.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.form-group.checkbox input {
+  width: auto;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.focus-summary {
+  text-align: left;
+  position: sticky;
+  top: 2rem;
+  background: #334155;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+}
+
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-header h2 {
+  margin: 0;
+}
+
+.daily-focus-chart {
+  margin-bottom: 2rem;
+  padding: 0;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  border-radius: 12px;
+  background: #334155;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.weekly-trend-section {
+  margin-bottom: 2rem;
+  padding: 0;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  border-radius: 12px;
+  background: #334155;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.daily-comparison-section {
+  margin-bottom: 2rem;
+  padding: 0;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  border-radius: 12px;
+  background: #334155;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.daily-comparison {
+  padding: 1.5rem;
+  padding-top: 1rem;
+}
+
+.comparison-legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.legend-color.previous-week {
+  background: linear-gradient(135deg, #93c5fd, #60a5fa);
+}
+
+.legend-color.current-week {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+}
+
+.daily-comparison-chart {
+  gap: 1rem;
+}
+
+.bar-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bar-pair {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  gap: 0.25rem;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.previous-week-bar {
+  flex: 1;
+  background: linear-gradient(180deg, #93c5fd 0%, #60a5fa 100%) !important;
+  border-radius: 4px 4px 0 0;
+  min-height: 4px;
+  position: relative;
+  transition: all 0.3s;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.current-week-bar {
+  flex: 1;
+  background: linear-gradient(180deg, #2563eb 0%, #1e40af 100%) !important;
+  border-radius: 4px 4px 0 0;
+  min-height: 4px;
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+  position: relative;
+  transition: all 0.3s;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.previous-week-bar:hover,
+.current-week-bar:hover {
+  opacity: 0.8;
+  transform: scaleY(1.02);
+}
+
+
+.weekly-comparison {
+  margin-top: 0;
+  padding: 1.5rem;
+  padding-top: 1rem;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.chart-header.collapsible {
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  margin: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(100, 108, 255, 0.2);
+}
+
+.chart-header.collapsible:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.chart-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+}
+
+.week-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(100, 108, 255, 0.15);
+}
+
+.week-nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.week-nav-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #646cff;
+}
+
+.week-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.week-range {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4ecdc4;
+  min-width: 120px;
+  text-align: center;
+}
+
+.chart-container {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+  padding: 1.5rem;
+  padding-top: 1rem;
+}
+
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 2.5rem;
+  min-width: 40px;
+}
+
+.y-axis-label {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  text-align: right;
+  line-height: 1;
+}
+
+.chart-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.x-axis {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  position: relative;
+}
+
+.x-axis-labels {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  margin-top: 0.75rem;
+}
+
+.weekly-comparison .x-axis-labels {
+  justify-content: center;
+  gap: 4rem;
+  padding: 0 3rem;
+}
+
+.x-axis-labels .bar-label {
+  flex: 1;
+  text-align: center;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.weekly-comparison .x-axis-labels .bar-label {
+  flex: 0 0 auto;
+  width: 120px;
+}
+
+.bar-chart {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+  height: 200px;
+  padding: 1rem;
+  padding-bottom: 0;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px 8px 0 0;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.bar-chart.weekly {
+  gap: 4rem;
+  height: 180px;
+  justify-content: center;
+  padding: 1rem 3rem;
+  padding-bottom: 0;
+}
+
+.bar-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bar-column.weekly {
+  flex: 0 0 auto;
+  width: 120px;
+}
+
+.bar-container {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bar {
+  width: 100%;
+  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+  border-radius: 6px 6px 0 0;
+  min-height: 4px;
+  position: relative;
+  transition: all 0.3s;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.bar:hover {
+  opacity: 0.8;
+  transform: scaleY(1.02);
+}
+
+.bar.current-week {
+  background: linear-gradient(180deg, #2563eb 0%, #1e40af 100%);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+}
+
+.bar.previous-week {
+  background: linear-gradient(180deg, #93c5fd 0%, #60a5fa 100%);
+  box-shadow: none;
+}
+
+.bar-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.bar-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.bar-day {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.bar-date {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.bar-week-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.bar-week-sessions {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  color: #4ecdc4;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: #475569;
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  transition: all 0.3s;
+}
+
+.stat-card:hover {
+  background: #64748b;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.stat-icon {
+  background: #3b82f6;
+  border-radius: 12px;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin: 0.25rem 0 0 0;
+}
+
+.stat-time {
+  font-size: 1rem;
+  color: #3b82f6;
+  margin: 0.5rem 0 0 0;
+  font-weight: 600;
+}
+
+.recent-sessions {
+  margin-bottom: 2rem;
+}
+
+.recent-sessions h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.session-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  border-left: 3px solid #646cff;
+  transition: all 0.3s;
+}
+
+.session-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(2px);
+}
+
+.session-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.session-date {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.session-time {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.session-duration {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4ecdc4;
+}
+
+.productivity-insights {
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.productivity-insights h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.insight-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+}
+
+.insight-label {
+  opacity: 0.8;
+}
+
+.insight-value {
+  font-weight: 600;
+  color: #4ecdc4;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 2rem;
+  opacity: 0.5;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+  .focus-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .focus-summary {
+    position: relative;
+    top: 0;
+    max-height: none;
+  }
+  
+  .bar-chart {
+    height: 180px;
+  }
+  
+  .bar-container {
+    height: 140px;
+  }
+  
+  .y-axis {
+    padding-bottom: 2.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .time {
+    font-size: 4rem;
+  }
+  
+  .timer-modes {
+    flex-direction: column;
+  }
+  
+  .mode-btn {
+    width: 100%;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .chart-container {
+    gap: 0.5rem;
+  }
+  
+  .y-axis {
+    min-width: 30px;
+    padding-bottom: 2rem;
+  }
+  
+  .y-axis-label {
+    font-size: 0.7rem;
+  }
+  
+  .bar-chart {
+    gap: 0.5rem;
+    height: 150px;
+    padding: 0.75rem;
+  }
+  
+  .bar-container {
+    height: 110px;
+  }
+  
+  .bar-value {
+    font-size: 0.65rem;
+  }
+  
+  .bar-label {
+    font-size: 0.75rem;
+  }
+  
+  .chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .week-navigation {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .week-range {
+    min-width: auto;
+    font-size: 0.85rem;
+  }
+  
+  .bar-day {
+    font-size: 0.8rem;
+  }
+  
+  .bar-date {
+    font-size: 0.65rem;
+  }
+  
+  .bar-week-label {
+    font-size: 0.85rem;
+  }
+  
+  .bar-week-sessions {
+    font-size: 0.75rem;
+  }
+  
+  .bar-chart.weekly {
+    gap: 1rem;
+  }
+
+  .today-summary {
+    flex-direction: column;
+    padding: 0 0.5rem;
+  }
+
+  .summary-item {
+    max-width: none;
+  }
+}

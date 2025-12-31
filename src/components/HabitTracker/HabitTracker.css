@@ -1,0 +1,282 @@
+.habits-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.habits-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.view-mode-toggle {
+  display: flex;
+  gap: 0.5rem;
+  background: #475569;
+  padding: 0.25rem;
+  border-radius: 8px;
+}
+
+.view-mode-toggle .mode-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.view-mode-toggle .mode-btn:hover {
+  color: white;
+}
+
+.view-mode-toggle .mode-btn.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.habits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.habit-card {
+  border-left: 4px solid;
+  padding: 1.5rem;
+}
+
+.habit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.habit-info {
+  flex: 1;
+}
+
+.habit-info h3 {
+  margin-bottom: 0.5rem;
+}
+
+.habit-description {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.75rem;
+}
+
+.habit-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  opacity: 0.8;
+}
+
+.frequency-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(100, 108, 255, 0.3);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.delete-btn {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.delete-btn:hover {
+  background: rgba(255, 68, 68, 0.3);
+}
+
+.week-tracker h4 {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.week-grid.grid-30 {
+  grid-template-columns: repeat(10, 1fr);
+  gap: 0.4rem;
+}
+
+.day-cell {
+  aspect-ratio: 1;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  padding: 0.5rem;
+}
+
+.grid-30 .day-cell {
+  padding: 0.25rem;
+  border-radius: 6px;
+}
+
+.day-cell:hover {
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.day-cell.completed {
+  border-color: transparent;
+  color: white;
+  font-weight: 600;
+}
+
+.day-cell.today {
+  border-color: #646cff;
+  border-width: 3px;
+}
+
+.day-name {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.grid-30 .day-name {
+  font-size: 0.6rem;
+}
+
+.day-number {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.grid-30 .day-number {
+  font-size: 0.8rem;
+}
+
+.habit-form {
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+
+.color-picker {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.color-option {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+}
+
+.color-option.selected {
+  border-color: white;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0.6;
+}
+
+@media (prefers-color-scheme: light) {
+  .habit-description {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .day-cell {
+    border-color: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.02);
+  }
+  
+  .day-cell:hover {
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .delete-btn {
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+@media (max-width: 768px) {
+  .habits-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .week-grid {
+    gap: 0.25rem;
+  }
+  
+  .day-cell {
+    padding: 0.25rem;
+  }
+  
+  .day-name {
+    font-size: 0.6rem;
+  }
+  
+  .day-number {
+    font-size: 1rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
