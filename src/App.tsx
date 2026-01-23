@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Timer, ListTodo, Calendar, Target, LogOut, Clock } from 'lucide-react';
+import { Timer, ListTodo, Calendar, Target, LogOut, Clock, ChevronDown, Settings } from 'lucide-react';
 import { isToday } from 'date-fns';
+import { signInAnonymously } from 'firebase/auth';
+import { auth } from './config/firebase';
 import Auth from './components/Auth/Auth';
 import FocusComponent from './components/Focus/Focus';
 import TodoList from './components/TodoList/TodoList';
 import HabitTracker from './components/HabitTracker/HabitTracker';
 import Goals from './components/Goals/Goals';
-import { getTimerSessions } from './utils/storage';
+import AISettings from './components/AISettings/AISettings';
+import { getTimerSessions, getGoals, getHabits, getTasks, saveGoals, saveHabits, saveTasks, generateId, setCurrentUserId, loadDataFromFirebase } from './utils/storage';
+import { AISuggestion } from './utils/aiService';
 import './App.css';
 
 type Tab = 'focus' | 'todos' | 'habits' | 'goals';
@@ -14,6 +18,7 @@ type Tab = 'focus' | 'todos' | 'habits' | 'goals';
 interface User {
   email: string;
   name: string;
+  picture?: string;
 }
 
 function App() {
@@ -21,13 +26,23 @@ function App() {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [todayFocusTime, setTodayFocusTime] = useState({ hours: 0, minutes: 0 });
+  const [showAISettings, setShowAISettings] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     // Check if user is already logged in
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {
-        setUser(JSON.parse(storedUser));
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+        // Set user ID for Firebase storage and load data
+        setCurrentUserId(parsedUser.email);
+        loadDataFromFirebase(parsedUser.email).then(() => {
+          setIsLoading(false);
+        });
+        return;
       } catch (error) {
         console.error('Error parsing stored user:', error);
         localStorage.removeItem('user');
@@ -49,28 +64,91 @@ function App() {
       setTodayFocusTime({ hours, minutes });
     };
 
-    calculateTodayFocus();
-    
-    // Update every minute
-    const interval = setInterval(calculateTodayFocus, 60000);
-    
-    // Listen for storage changes to update in real-time
-    window.addEventListener('storage', calculateTodayFocus);
-    
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener('storage', calculateTodayFocus);
-    };
-  }, []);
+    if (user) {
+      calculateTodayFocus();
+      
+      // Update every minute
+      const interval = setInterval(calculateTodayFocus, 60000);
+      
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [user]);
 
-  const handleLogin = (userData: User) => {
+  const handleLogin = async (userData: User) => {
     setUser(userData);
+    
+    // Sign in to Firebase anonymously to get auth context
+    try {
+      console.log('🔐 Signing into Firebase Auth...');
+      await signInAnonymously(auth);
+      console.log('✅ Firebase Auth successful');
+    } catch (error) {
+      console.error('❌ Firebase Auth error:', error);
+    }
+    
+    // Set user ID for Firebase storage and load data
+    setCurrentUserId(userData.email);
+    await loadDataFromFirebase(userData.email);
+    setRefreshKey(prev => prev + 1); // Refresh components with new data
   };
 
   const handleLogout = () => {
     localStorage.removeItem('user');
     setUser(null);
+    setCurrentUserId(null);
     setActiveTab('focus');
+  };
+
+  // AI Suggestion handlers
+  const handleAddGoalFromSuggestion = async (suggestion: AISuggestion) => {
+    const goals = await getGoals();
+    const newGoal = {
+      id: generateId(),
+      title: suggestion.title,
+      description: suggestion.description,
+      category: suggestion.category || '',
+      targetDate: suggestion.dueDate || '',
+      status: 'active' as const,
+      progress: 0,
+      createdAt: new Date().toISOString(),
+    };
+    await saveGoals([...goals, newGoal]);
+    setRefreshKey(prev => prev + 1);
+    setActiveTab('goals');
+  };
+
+  const handleAddHabitFromSuggestion = async (suggestion: AISuggestion) => {
+    const habits = await getHabits();
+    const newHabit = {
+      id: generateId(),
+      name: suggestion.title,
+      description: suggestion.description,
+      frequency: 'daily' as const,
+      color: '#3b82f6',
+      createdAt: new Date().toISOString(),
+    };
+    await saveHabits([...habits, newHabit]);
+    setRefreshKey(prev => prev + 1);
+    setActiveTab('habits');
+  };
+
+  const handleAddTaskFromSuggestion = async (suggestion: AISuggestion) => {
+    const tasks = await getTasks();
+    const newTask = {
+      id: generateId(),
+      title: suggestion.title,
+      description: suggestion.description,
+      priority: suggestion.priority as 'low' | 'medium' | 'high',
+      category: '',
+      dueDate: '',
+      completed: false,
+      createdAt: new Date().toISOString(),
+    };
+    await saveTasks([...tasks, newTask]);
+    setRefreshKey(prev => prev + 1);
+    setActiveTab('todos');
   };
 
   if (isLoading) {
@@ -96,10 +174,26 @@ function App() {
           </span>
         </div>
         <div className="user-section">
-          <span className="welcome-text">Welcome, {user.name}</span>
-          <button className="logout-btn" onClick={handleLogout} title="Logout">
-            <LogOut size={18} />
+          <button 
+            className="user-menu-btn" 
+            onClick={() => setShowUserMenu(!showUserMenu)}
+            title="User Menu"
+          >
+            <span className="welcome-text">Welcome, {user.name}</span>
+            <ChevronDown size={16} />
           </button>
+          {showUserMenu && (
+            <div className="user-menu-dropdown">
+              <button onClick={() => { setShowAISettings(true); setShowUserMenu(false); }}>
+                <Settings size={16} />
+                AI Settings
+              </button>
+              <button onClick={handleLogout}>
+                <LogOut size={16} />
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       </header>
 
@@ -136,10 +230,50 @@ function App() {
 
       <main className="app-content">
         {activeTab === 'focus' && <FocusComponent />}
-        {activeTab === 'todos' && <TodoList />}
-        {activeTab === 'habits' && <HabitTracker />}
-        {activeTab === 'goals' && <Goals />}
+        {activeTab === 'todos' && (
+          <TodoList
+            key={`todos-${refreshKey}`}
+            aiSuggestionHandler={{
+              goals: getGoals(),
+              habits: getHabits(),
+              tasks: getTasks(),
+              sessions: getTimerSessions(),
+              onAddTask: handleAddTaskFromSuggestion,
+              onOpenSettings: () => setShowAISettings(true),
+            }}
+          />
+        )}
+        {activeTab === 'habits' && (
+          <HabitTracker
+            key={`habits-${refreshKey}`}
+            aiSuggestionHandler={{
+              goals: getGoals(),
+              habits: getHabits(),
+              tasks: getTasks(),
+              sessions: getTimerSessions(),
+              onAddHabit: handleAddHabitFromSuggestion,
+              onOpenSettings: () => setShowAISettings(true),
+            }}
+          />
+        )}
+        {activeTab === 'goals' && (
+          <Goals
+            key={`goals-${refreshKey}`}
+            aiSuggestionHandler={{
+              goals: getGoals(),
+              habits: getHabits(),
+              tasks: getTasks(),
+              sessions: getTimerSessions(),
+              onAddGoal: handleAddGoalFromSuggestion,
+              onOpenSettings: () => setShowAISettings(true),
+            }}
+          />
+        )}
       </main>
+
+      {showAISettings && (
+        <AISettings onClose={() => setShowAISettings(false)} />
+      )}
 
       <footer className="app-footer">
         <p>Built with React + TypeScript + Vite • All data stored locally</p>

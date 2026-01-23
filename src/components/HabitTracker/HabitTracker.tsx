@@ -8,7 +8,9 @@ import {
   saveHabitLogs,
   generateId,
 } from '../../utils/storage';
-import { Habit, HabitLog } from '../../types';
+import { Habit, HabitLog, Goal, Task, TimerSession } from '../../types';
+import { AISuggestion } from '../../utils/aiService';
+import InlineAISuggestions from '../InlineAISuggestions/InlineAISuggestions';
 import './HabitTracker.css';
 
 const HABIT_COLORS = [
@@ -16,7 +18,18 @@ const HABIT_COLORS = [
   '#f7b731', '#5f27cd', '#00d2d3', '#ee5a6f'
 ];
 
-export default function HabitTracker() {
+interface HabitTrackerProps {
+  aiSuggestionHandler?: {
+    goals: Goal[];
+    habits: Habit[];
+    tasks: Task[];
+    sessions: TimerSession[];
+    onAddHabit: (suggestion: AISuggestion) => void;
+    onOpenSettings: () => void;
+  };
+}
+
+export default function HabitTracker({ aiSuggestionHandler }: HabitTrackerProps) {
   const [habits, setHabits] = useState<Habit[]>(getHabits());
   const [logs, setLogs] = useState<HabitLog[]>(getHabitLogs());
   const [showForm, setShowForm] = useState(false);
@@ -102,6 +115,17 @@ export default function HabitTracker() {
       <div className="habits-header">
         <h1>Habit Tracker</h1>
         <div className="header-actions">
+          {aiSuggestionHandler && (
+            <InlineAISuggestions
+              type="habit"
+              goals={aiSuggestionHandler.goals}
+              habits={aiSuggestionHandler.habits}
+              tasks={aiSuggestionHandler.tasks}
+              sessions={aiSuggestionHandler.sessions}
+              onAdd={aiSuggestionHandler.onAddHabit}
+              onOpenSettings={aiSuggestionHandler.onOpenSettings}
+            />
+          )}
           <div className="view-mode-toggle">
             <button
               className={`mode-btn ${viewMode === '7days' ? 'active' : ''}`}

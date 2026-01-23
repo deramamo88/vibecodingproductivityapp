@@ -1,10 +1,23 @@
 import { useState } from 'react';
 import { Plus, Trash2, Edit2, Check, X } from 'lucide-react';
 import { getTasks, saveTasks, generateId } from '../../utils/storage';
-import { Task } from '../../types';
+import { Task, Goal, Habit, TimerSession } from '../../types';
+import { AISuggestion } from '../../utils/aiService';
+import InlineAISuggestions from '../InlineAISuggestions/InlineAISuggestions';
 import './TodoList.css';
 
-export default function TodoList() {
+interface TodoListProps {
+  aiSuggestionHandler?: {
+    goals: Goal[];
+    habits: Habit[];
+    tasks: Task[];
+    sessions: TimerSession[];
+    onAddTask: (suggestion: AISuggestion) => void;
+    onOpenSettings: () => void;
+  };
+}
+
+export default function TodoList({ aiSuggestionHandler }: TodoListProps) {
   const [tasks, setTasks] = useState<Task[]>(getTasks());
   const [showForm, setShowForm] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
@@ -59,9 +72,22 @@ export default function TodoList() {
     <div className="todo-container">
       <div className="todo-header">
         <h1>To-Do List</h1>
-        <button className="add-btn primary" onClick={() => setShowForm(true)}>
-          <Plus size={20} /> Add Task
-        </button>
+        <div className="header-actions">
+          {aiSuggestionHandler && (
+            <InlineAISuggestions
+              type="task"
+              goals={aiSuggestionHandler.goals}
+              habits={aiSuggestionHandler.habits}
+              tasks={aiSuggestionHandler.tasks}
+              sessions={aiSuggestionHandler.sessions}
+              onAdd={aiSuggestionHandler.onAddTask}
+              onOpenSettings={aiSuggestionHandler.onOpenSettings}
+            />
+          )}
+          <button className="add-btn primary" onClick={() => setShowForm(true)}>
+            <Plus size={20} /> Add Task
+          </button>
+        </div>
       </div>
 
       <div className="filter-tabs">

@@ -8,10 +8,23 @@ import {
   saveMilestones,
   generateId,
 } from '../../utils/storage';
-import { Goal, Milestone } from '../../types';
+import { Goal, Milestone, Habit, Task, TimerSession } from '../../types';
+import { AISuggestion } from '../../utils/aiService';
+import InlineAISuggestions from '../InlineAISuggestions/InlineAISuggestions';
 import './Goals.css';
 
-export default function Goals() {
+interface GoalsProps {
+  aiSuggestionHandler?: {
+    goals: Goal[];
+    habits: Habit[];
+    tasks: Task[];
+    sessions: TimerSession[];
+    onAddGoal: (suggestion: AISuggestion) => void;
+    onOpenSettings: () => void;
+  };
+}
+
+export default function Goals({ aiSuggestionHandler }: GoalsProps) {
   const [goals, setGoals] = useState<Goal[]>(getGoals());
   const [milestones, setMilestones] = useState<Milestone[]>(getMilestones());
   const [showGoalForm, setShowGoalForm] = useState(false);
@@ -117,9 +130,22 @@ export default function Goals() {
     <div className="goals-container">
       <div className="goals-header">
         <h1>Goals</h1>
-        <button className="add-btn primary" onClick={() => setShowGoalForm(true)}>
-          <Plus size={20} /> Add Goal
-        </button>
+        <div className="header-actions">
+          {aiSuggestionHandler && (
+            <InlineAISuggestions
+              type="goal"
+              goals={aiSuggestionHandler.goals}
+              habits={aiSuggestionHandler.habits}
+              tasks={aiSuggestionHandler.tasks}
+              sessions={aiSuggestionHandler.sessions}
+              onAdd={aiSuggestionHandler.onAddGoal}
+              onOpenSettings={aiSuggestionHandler.onOpenSettings}
+            />
+          )}
+          <button className="add-btn primary" onClick={() => setShowGoalForm(true)}>
+            <Plus size={20} /> Add Goal
+          </button>
+        </div>
       </div>
 
       <div className="filter-tabs">
@@ -241,7 +267,7 @@ function GoalCard({
 
       <div className="goal-meta">
         <span>📍 {milestoneCount} milestones</span>
-        <span>📅 Due: {format(new Date(goal.targetDate), 'MMM d, yyyy')}</span>
+        {goal.targetDate && <span>📅 Due: {format(new Date(goal.targetDate), 'MMM d, yyyy')}</span>}
       </div>
     </div>
   );
@@ -296,7 +322,11 @@ function GoalDetails({
 
       <div className="details-section">
         <h4>Target Date</h4>
-        <p>{format(new Date(goal.targetDate), 'MMMM d, yyyy')}</p>
+        {goal.targetDate ? (
+          <p>{format(new Date(goal.targetDate), 'MMMM d, yyyy')}</p>
+        ) : (
+          <p className="no-date">No target date set</p>
+        )}
       </div>
 
       <div className="details-section">

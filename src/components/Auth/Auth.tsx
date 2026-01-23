@@ -1,9 +1,18 @@
 import { useState } from 'react';
+import { GoogleLogin, CredentialResponse } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
 import { LogIn, UserPlus, Eye, EyeOff } from 'lucide-react';
 import './Auth.css';
 
 interface AuthProps {
-  onLogin: (user: { email: string; name: string }) => void;
+  onLogin: (user: { email: string; name: string; picture?: string }) => void;
+}
+
+interface GoogleCredential {
+  email: string;
+  name: string;
+  picture: string;
+  sub: string;
 }
 
 export default function Auth({ onLogin }: AuthProps) {
@@ -93,6 +102,35 @@ export default function Auth({ onLogin }: AuthProps) {
     });
   };
 
+  const handleGoogleSuccess = (credentialResponse: CredentialResponse) => {
+    try {
+      if (!credentialResponse.credential) {
+        console.error('No credential received');
+        return;
+      }
+
+      const decoded = jwtDecode<GoogleCredential>(credentialResponse.credential);
+      const user = {
+        email: decoded.email,
+        name: decoded.name,
+        picture: decoded.picture,
+      };
+
+      // Store user in localStorage
+      localStorage.setItem('user', JSON.stringify(user));
+      
+      // Call the onLogin callback
+      onLogin(user);
+    } catch (error) {
+      console.error('Failed to decode Google credential:', error);
+      setErrors({ general: 'Failed to sign in with Google. Please try again.' });
+    }
+  };
+
+  const handleGoogleError = () => {
+    setErrors({ general: 'Google Sign-In failed. Please try again.' });
+  };
+
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -102,6 +140,24 @@ export default function Auth({ onLogin }: AuthProps) {
           </div>
           <h1>{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
           <p>{isLogin ? 'Sign in to continue your productivity journey' : 'Join us to start tracking your focus'}</p>
+        </div>
+
+        {/* Google SSO Button */}
+        <div className="google-sso-container">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            useOneTap
+            theme="filled_blue"
+            size="large"
+            text={isLogin ? "signin_with" : "signup_with"}
+            width="100%"
+          />
+          {errors.general && <span className="error-message">{errors.general}</span>}
+        </div>
+
+        <div className="divider">
+          <span>or continue with email</span>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
