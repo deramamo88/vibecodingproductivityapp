@@ -151,6 +151,120 @@
   text-decoration: underline;
 }
 
+:root[data-theme="light"] .ai-settings-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme="light"] .ai-settings-modal {
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .ai-settings-header {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .close-btn {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="light"] .close-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .info-box {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.2);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="light"] .form-group label {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .api-key-input {
+  background: #f8f9fa;
+  border-color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .api-key-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+:root[data-theme="light"] .toggle-visibility {
+  background: #e2e8f0;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="light"] .toggle-visibility:hover {
+  background: #cbd5e1;
+}
+
+:root[data-theme="light"] .help-text {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .ai-settings-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  :root:not([data-theme="dark"]) .ai-settings-modal {
+    background: #ffffff;
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  :root:not([data-theme="dark"]) .ai-settings-header {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .close-btn {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  :root:not([data-theme="dark"]) .close-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  :root:not([data-theme="dark"]) .info-box {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.2);
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  :root:not([data-theme="dark"]) .form-group label {
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  :root:not([data-theme="dark"]) .api-key-input {
+    background: #f8f9fa;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  :root:not([data-theme="dark"]) .api-key-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .toggle-visibility {
+    background: #e2e8f0;
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  :root:not([data-theme="dark"]) .toggle-visibility:hover {
+    background: #cbd5e1;
+  }
+  
+  :root:not([data-theme="dark"]) .help-text {
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
 .ai-features {
   padding: 1rem;
   background: rgba(30, 41, 59, 0.5);
@@ -243,5 +357,69 @@
 
   .ai-settings-actions {
     flex-direction: column;
+  }
+}
+
+:root[data-theme="light"] .ai-features {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+:root[data-theme="light"] .ai-features h3 {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .ai-features li {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="light"] .success-message {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #15803d;
+}
+
+:root[data-theme="light"] .ai-settings-actions {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .ai-settings-actions button.secondary {
+  background: #e2e8f0;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="light"] .ai-settings-actions button.secondary:hover {
+  background: #cbd5e1;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .ai-features {
+    background: rgba(0, 0, 0, 0.03);
+  }
+  
+  :root:not([data-theme="dark"]) .ai-features h3 {
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  :root:not([data-theme="dark"]) .ai-features li {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  :root:not([data-theme="dark"]) .success-message {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #15803d;
+  }
+  
+  :root:not([data-theme="dark"]) .ai-settings-actions {
+    border-top-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .ai-settings-actions button.secondary {
+    background: #e2e8f0;
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  :root:not([data-theme="dark"]) .ai-settings-actions button.secondary:hover {
+    background: #cbd5e1;
   }
 }

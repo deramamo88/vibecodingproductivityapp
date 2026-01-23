@@ -234,22 +234,129 @@
   opacity: 0.6;
 }
 
+:root[data-theme="light"] .habit-description {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="light"] .view-mode-toggle {
+  background: #e2e8f0;
+}
+
+:root[data-theme="light"] .view-mode-toggle .mode-btn {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="light"] .view-mode-toggle .mode-btn:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .view-mode-toggle .mode-btn.active {
+  background: #3b82f6;
+  color: white;
+}
+
+:root[data-theme="light"] .habit-card {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .habit-stats .stat {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="light"] .frequency-badge {
+  background: rgba(100, 108, 255, 0.2);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="light"] .day-cell {
+  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.02);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="light"] .day-cell:hover {
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme="light"] .day-cell.today {
+  border-color: #646cff;
+}
+
+:root[data-theme="light"] .delete-btn {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="light"] .delete-btn:hover {
+  background: rgba(255, 68, 68, 0.2);
+}
+
+:root[data-theme="light"] .empty-state {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 @media (prefers-color-scheme: light) {
-  .habit-description {
+  :root:not([data-theme="dark"]) .habit-description {
     color: rgba(0, 0, 0, 0.6);
   }
   
-  .day-cell {
-    border-color: rgba(0, 0, 0, 0.1);
-    background: rgba(0, 0, 0, 0.02);
+  :root:not([data-theme="dark"]) .view-mode-toggle {
+    background: #e2e8f0;
   }
   
-  .day-cell:hover {
+  :root:not([data-theme="dark"]) .view-mode-toggle .mode-btn {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  :root:not([data-theme="dark"]) .view-mode-toggle .mode-btn:hover {
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  :root:not([data-theme="dark"]) .view-mode-toggle .mode-btn.active {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  :root:not([data-theme="dark"]) .habit-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .habit-stats .stat {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  :root:not([data-theme="dark"]) .frequency-badge {
+    background: rgba(100, 108, 255, 0.2);
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  :root:not([data-theme="dark"]) .day-cell {
+    border-color: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.02);
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  :root:not([data-theme="dark"]) .day-cell:hover {
     border-color: rgba(0, 0, 0, 0.3);
   }
   
-  .delete-btn {
+  :root:not([data-theme="dark"]) .day-cell.today {
+    border-color: #646cff;
+  }
+  
+  :root:not([data-theme="dark"]) .delete-btn {
     background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  :root:not([data-theme="dark"]) .delete-btn:hover {
+    background: rgba(255, 68, 68, 0.2);
+  }
+  
+  :root:not([data-theme="dark"]) .empty-state {
+    color: rgba(0, 0, 0, 0.5);
   }
 }
 

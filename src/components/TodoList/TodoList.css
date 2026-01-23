@@ -220,17 +220,93 @@
   opacity: 0.5;
 }
 
+:root[data-theme="light"] .task-description {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="light"] .filter-tabs button {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="light"] .filter-tabs button:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="light"] .filter-tabs button.active {
+  border-color: #646cff;
+  background: rgba(100, 108, 255, 0.15);
+}
+
+:root[data-theme="light"] .task-actions button {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="light"] .task-actions button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .task-actions .delete-btn:hover {
+  background: rgba(255, 68, 68, 0.2);
+}
+
+:root[data-theme="light"] .form-group input,
+:root[data-theme="light"] .form-group textarea,
+:root[data-theme="light"] .form-group select {
+  border: 1px solid #ccc;
+  background: white;
+  color: #000;
+}
+
+:root[data-theme="light"] .category-badge {
+  background: rgba(100, 108, 255, 0.2);
+  color: rgba(0, 0, 0, 0.8);
+}
+
 @media (prefers-color-scheme: light) {
-  .task-description {
+  :root:not([data-theme="dark"]) .task-description {
     color: rgba(0, 0, 0, 0.6);
   }
   
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
+  :root:not([data-theme="dark"]) .filter-tabs button {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  :root:not([data-theme="dark"]) .filter-tabs button:hover {
+    background: rgba(0, 0, 0, 0.08);
+  }
+  
+  :root:not([data-theme="dark"]) .filter-tabs button.active {
+    border-color: #646cff;
+    background: rgba(100, 108, 255, 0.15);
+  }
+  
+  :root:not([data-theme="dark"]) .task-actions button {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  :root:not([data-theme="dark"]) .task-actions button:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .task-actions .delete-btn:hover {
+    background: rgba(255, 68, 68, 0.2);
+  }
+  
+  :root:not([data-theme="dark"]) .form-group input,
+  :root:not([data-theme="dark"]) .form-group textarea,
+  :root:not([data-theme="dark"]) .form-group select {
     border: 1px solid #ccc;
     background: white;
     color: #000;
+  }
+  
+  :root:not([data-theme="dark"]) .category-badge {
+    background: rgba(100, 108, 255, 0.2);
+    color: rgba(0, 0, 0, 0.8);
   }
 }
 

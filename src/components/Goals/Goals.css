@@ -340,3 +340,135 @@
     width: 100%;
   }
 }
+
+:root[data-theme="light"] .goal-card {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .goal-card:hover {
+  border-color: rgba(100, 108, 255, 0.4);
+}
+
+:root[data-theme="light"] .goal-card.selected {
+  border-color: #646cff;
+  background: rgba(100, 108, 255, 0.08);
+}
+
+:root[data-theme="light"] .goal-category {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="light"] .goal-actions button {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="light"] .goal-actions button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .goal-actions .delete-btn:hover {
+  background: rgba(255, 68, 68, 0.2);
+}
+
+:root[data-theme="light"] .progress-bar {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .goal-meta {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="light"] .details-header {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .close-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .milestone-item {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+:root[data-theme="light"] .milestone-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme="light"] .milestone-date {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="light"] .empty-message,
+:root[data-theme="light"] .empty-state {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .goal-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .goal-card:hover {
+    border-color: rgba(100, 108, 255, 0.4);
+  }
+  
+  :root:not([data-theme="dark"]) .goal-card.selected {
+    border-color: #646cff;
+    background: rgba(100, 108, 255, 0.08);
+  }
+  
+  :root:not([data-theme="dark"]) .goal-category {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  :root:not([data-theme="dark"]) .goal-actions button {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  :root:not([data-theme="dark"]) .goal-actions button:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .goal-actions .delete-btn:hover {
+    background: rgba(255, 68, 68, 0.2);
+  }
+  
+  :root:not([data-theme="dark"]) .progress-bar {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .goal-meta {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  :root:not([data-theme="dark"]) .details-header {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .close-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  :root:not([data-theme="dark"]) .milestone-item {
+    background: rgba(0, 0, 0, 0.03);
+  }
+  
+  :root:not([data-theme="dark"]) .milestone-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  :root:not([data-theme="dark"]) .milestone-date {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  :root:not([data-theme="dark"]) .empty-message,
+  :root:not([data-theme="dark"]) .empty-state {
+    color: rgba(0, 0, 0, 0.5);
+  }
+}

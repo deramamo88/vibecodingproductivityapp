@@ -13,6 +13,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Light theme via manual override */
+:root[data-theme="light"] {
+  color-scheme: light;
+  color: #213547;
+  background-color: #ffffff;
+}
+
+/* Light theme via system preference (unless dark is forced) */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +40,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #1e293b;
+}
+
+:root[data-theme="light"] body {
+  background-color: #f8f9fa;
 }
 
 button {
@@ -59,12 +79,12 @@ select {
   color: #000;
 }
 
+:root[data-theme="light"] button {
+  background-color: #f9f9f9;
+}
+
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  button {
+  :root:not([data-theme="dark"]) button {
     background-color: #f9f9f9;
   }
 }
@@ -123,19 +143,35 @@ select {
   border-left: 4px solid #00aa00;
 }
 
+:root[data-theme="light"] .card {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid #e0e0e0;
+}
+
+:root[data-theme="light"] .nav-tabs {
+  border-bottom-color: #e0e0e0;
+}
+
+:root[data-theme="light"] input,
+:root[data-theme="light"] textarea,
+:root[data-theme="light"] select {
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
 @media (prefers-color-scheme: light) {
-  .card {
+  :root:not([data-theme="dark"]) .card {
     background: rgba(0, 0, 0, 0.02);
     border: 1px solid #e0e0e0;
   }
   
-  .nav-tabs {
+  :root:not([data-theme="dark"]) .nav-tabs {
     border-bottom-color: #e0e0e0;
   }
   
-  input,
-  textarea,
-  select {
+  :root:not([data-theme="dark"]) input,
+  :root:not([data-theme="dark"]) textarea,
+  :root:not([data-theme="dark"]) select {
     border: 1px solid #ccc;
     background-color: #fff;
   }

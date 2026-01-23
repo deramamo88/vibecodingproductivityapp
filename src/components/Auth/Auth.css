@@ -323,3 +323,139 @@
     height: 250px;
   }
 }
+
+:root[data-theme="light"] .auth-container {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+:root[data-theme="light"] .auth-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="light"] .auth-header h1 {
+  background: linear-gradient(135deg, #1e293b, #475569);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+:root[data-theme="light"] .auth-header p {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="light"] .divider::before {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .divider span {
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme="light"] .form-group label {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .form-group input {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .form-group input:focus {
+  border-color: #646cff;
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 0 4px rgba(100, 108, 255, 0.1);
+}
+
+:root[data-theme="light"] .form-group input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme="light"] .toggle-password {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme="light"] .toggle-password:hover {
+  color: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme="light"] .auth-footer {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .auth-footer p {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .auth-container {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+  
+  :root:not([data-theme="dark"]) .auth-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+  
+  :root:not([data-theme="dark"]) .auth-header h1 {
+    background: linear-gradient(135deg, #1e293b, #475569);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  :root:not([data-theme="dark"]) .auth-header p {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  :root:not([data-theme="dark"]) .divider::before {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .divider span {
+    background: #ffffff;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  
+  :root:not([data-theme="dark"]) .form-group label {
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  :root:not([data-theme="dark"]) .form-group input {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  :root:not([data-theme="dark"]) .form-group input:focus {
+    border-color: #646cff;
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 0 4px rgba(100, 108, 255, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .form-group input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  :root:not([data-theme="dark"]) .toggle-password {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  
+  :root:not([data-theme="dark"]) .toggle-password:hover {
+    color: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  :root:not([data-theme="dark"]) .auth-footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  :root:not([data-theme="dark"]) .auth-footer p {
+    color: rgba(0, 0, 0, 0.6);
+  }
+}

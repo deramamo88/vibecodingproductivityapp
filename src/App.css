@@ -36,6 +36,27 @@
   gap: 1rem;
 }
 
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: rgba(255, 255, 255, 0.9);
+  min-width: 40px;
+  height: 40px;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
 .user-menu-btn {
   display: flex;
   align-items: center;
@@ -204,27 +225,190 @@
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
+/* Light theme styles - manual override */
+:root[data-theme="light"] .app-container {
+  background-color: #f8f9fa;
+}
+
+:root[data-theme="light"] .app-header {
+  background: linear-gradient(135deg, rgba(100, 108, 255, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .header-left {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="light"] .user-menu-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="light"] .user-menu-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="light"] .user-menu-dropdown {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="light"] .user-menu-dropdown button {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="light"] .user-menu-dropdown button:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .welcome-text {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="light"] .settings-btn,
+:root[data-theme="light"] .logout-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="light"] .settings-btn:hover,
+:root[data-theme="light"] .logout-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .nav-tabs {
+  background: rgba(0, 0, 0, 0.02);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="light"] .nav-tab {
+  background: rgba(0, 0, 0, 0.03);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="light"] .nav-tab:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme="light"] .nav-tab.active {
+  background: rgba(78, 205, 196, 0.15);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] .app-footer {
+  border-top-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="light"] .theme-toggle-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+:root[data-theme="light"] .theme-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
 @media (prefers-color-scheme: light) {
-  .app-header {
+  :root:not([data-theme="dark"]) .app-container {
+    background-color: #f8f9fa;
+  }
+
+  :root:not([data-theme="dark"]) .app-header {
     background: linear-gradient(135deg, rgba(100, 108, 255, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
     border-bottom-color: rgba(0, 0, 0, 0.1);
   }
-  
-  .nav-tabs {
+
+  :root:not([data-theme="dark"]) .header-left {
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  :root:not([data-theme="dark"]) .user-menu-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  :root:not([data-theme="dark"]) .user-menu-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+
+  :root:not([data-theme="dark"]) .user-menu-dropdown {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  :root:not([data-theme="dark"]) .user-menu-dropdown button {
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  :root:not([data-theme="dark"]) .user-menu-dropdown button:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  :root:not([data-theme="dark"]) .welcome-text {
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  :root:not([data-theme="dark"]) .settings-btn,
+  :root:not([data-theme="dark"]) .logout-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  :root:not([data-theme="dark"]) .settings-btn:hover,
+  :root:not([data-theme="dark"]) .logout-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  :root:not([data-theme="dark"]) .nav-tabs {
     background: rgba(0, 0, 0, 0.02);
     border-bottom-color: rgba(0, 0, 0, 0.1);
   }
-  
-  .nav-tab {
+
+  :root:not([data-theme="dark"]) .nav-tab {
     background: rgba(0, 0, 0, 0.03);
+    color: rgba(0, 0, 0, 0.8);
   }
-  
-  .nav-tab:hover {
+
+  :root:not([data-theme="dark"]) .nav-tab:hover {
     background: rgba(0, 0, 0, 0.05);
   }
-  
-  .app-footer {
+
+  :root:not([data-theme="dark"]) .nav-tab.active {
+    background: rgba(78, 205, 196, 0.15);
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  :root:not([data-theme="dark"]) .app-footer {
     border-top-color: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  :root:not([data-theme="dark"]) .theme-toggle-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  :root:not([data-theme="dark"]) .theme-toggle-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.15);
   }
 }
 

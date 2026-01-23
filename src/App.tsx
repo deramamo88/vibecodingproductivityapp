@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Timer, ListTodo, Calendar, Target, LogOut, Clock, ChevronDown, Settings } from 'lucide-react';
+import { Timer, ListTodo, Calendar, Target, LogOut, Clock, ChevronDown, Settings, Moon, Sun } from 'lucide-react';
 import { isToday } from 'date-fns';
 import { signInAnonymously } from 'firebase/auth';
 import { auth } from './config/firebase';
@@ -29,6 +29,21 @@ function App() {
   const [showAISettings, setShowAISettings] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>(() => {
+    const saved = localStorage.getItem('theme');
+    return (saved as 'light' | 'dark' | 'system') || 'system';
+  });
+
+  useEffect(() => {
+    // Apply theme to document
+    const root = document.documentElement;
+    if (theme === 'system') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', theme);
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     // Check if user is already logged in
@@ -99,6 +114,25 @@ function App() {
     setUser(null);
     setCurrentUserId(null);
     setActiveTab('focus');
+  };
+
+  const toggleTheme = () => {
+    setTheme(prev => {
+      // Determine current actual appearance
+      const isDarkMode = prev === 'dark' || 
+        (prev === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      // Toggle directly between light and dark
+      return isDarkMode ? 'light' : 'dark';
+    });
+  };
+
+  const getThemeIcon = () => {
+    if (theme === 'light') return <Sun size={18} />;
+    if (theme === 'dark') return <Moon size={18} />;
+    // System theme - show based on actual preference
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return isDark ? <Moon size={18} /> : <Sun size={18} />;
   };
 
   // AI Suggestion handlers
@@ -174,6 +208,13 @@ function App() {
           </span>
         </div>
         <div className="user-section">
+          <button 
+            className="theme-toggle-btn" 
+            onClick={toggleTheme}
+            title={`Theme: ${theme}`}
+          >
+            {getThemeIcon()}
+          </button>
           <button 
             className="user-menu-btn" 
             onClick={() => setShowUserMenu(!showUserMenu)}
